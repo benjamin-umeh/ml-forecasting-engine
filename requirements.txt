@@ -7,7 +7,7 @@ pystan==2.19.1.1
 fbprophet==0.7.1
 #numpy==1.19.5
 plotly
-pyarrow==0.14.1
+pyarrow#==0.14.1
 pycountry_convert==0.7.2
 #streamlit==0.79.0
 yfinance
