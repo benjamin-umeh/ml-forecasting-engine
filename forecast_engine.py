@@ -13,24 +13,16 @@ from pyspark import SparkContext
 
 from pyspark.sql.functions import pandas_udf, PandasUDFType, current_date
 from sklearn.preprocessing import PowerTransformer, MinMaxScaler
-from scipy.special import boxcox1p
+#from scipy.special import boxcox1p
 
 import numpy
 import pandas
 import pyarrow
-#import sklearn #.preprocessing import PowerTransformer, MinMaxScaler
 from pyspark.sql.functions import unix_timestamp, from_unixtime, to_timestamp
 from pyspark.sql.functions import current_date
-
 import datetime
-
-
 import streamlit as st
-import plotly.express as px
-from pandas_datareader import data as pdr
-
 import sys
-import pycountry_convert as pc
 
 st.title('Branches Sales Forecasts Dashboard')
 
@@ -38,8 +30,6 @@ st.title('Branches Sales Forecasts Dashboard')
 def load_data():
     sales_df = pd.read_csv('sales_data1.csv')
     return sales_df
-# train2 = spark.createDataFrame(stock_df2)
-# train2.createOrReplaceTempView('train2')
 
 df = load_data()
 
@@ -55,26 +45,6 @@ product = st.sidebar.selectbox(
 )
 
 prod_data = data[data['product_name']== product]
-
-# def facility_names():
-#   facilty_name_list_1 = sorted(list(stock_df.facilities.unique()))
-#   facilty_name_list_2 = facilty_name_list_1  #Remember that choices that go into a drop-down list, check boxes, radio buttons, etc. need to be in tuples in Django forms.
-#   facilty_name_tuples =  list(zip(facilty_name_list_1, facilty_name_list_2))
-#   return facilty_name_tuples
-
-# def facility_drug_combo():
-#     raw_dt = pd.read_pickle("stock_data.pkl")
-#     # stock_df["facility_drug"] = stock_df.facilities.astype(str).str.cat(stock_df.drug_name.astype(str), sep=' - ')
-#     facility_drug_combo_1 = sorted(list(raw_dt.facility_drug.unique()))
-#     facility_drug_combo_2 = facility_drug_combo_1  #Remember that choices that go into a drop-down list, check boxes, radio buttons, etc. need to be in tuples in Django forms.
-#     facility_drug_combo_tuples =  list(zip(facility_drug_combo_1, facility_drug_combo_2))
-#     return facility_drug_combo_tuples
-
-# def facility_drug_names(selected_facility):
-#   facility_name = selected_facility #query_params_1['facility_name'] # to be derived from the facility_names() through the form
-#   facility_drugs_df =  stock_df[stock_df["facilities"]==facility_name]
-#   facility_drug_names_list = sorted(list(facility_drug_df.drug_name.unique()))
-#   return facility_drug_name_list
 
 def train_data():
     # structure of the training data set
